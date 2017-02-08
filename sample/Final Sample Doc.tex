@@ -1,0 +1,587 @@
+\documentclass{demo}
+
+\renewcommand{\sourcevolumeforpassword}{Customer1234}
+
+\begin{document}
+
+\fancytitlepage{Yoann Gini}{IT Doc}{Customer name}
+
+\customintro
+
+\tableofcontents
+
+\chapter{System Architecture}
+
+\section{Network}
+
+\subsection{Gateway}
+
+Main gateway used for Internet access and VPN management.
+
+\subsubsection{System info}
+\begin{tabularx}{\textwidth}{l|l}
+ Type & Cisco ASA 5516-X \\
+ OS & ASA OS 9.7.1 / ASDM 7.7.1 \\
+ Location & Server Closet A42 \\
+\end{tabularx}
+
+\subsubsection{Network info}
+
+System has the following IP addresses:
+
+\begin{tabularx}{\textwidth}{l|ll}
+ IP Address & Usage & FQDN \\
+ \hline\endhead
+ \texttt{192.168.0.1} & LAN & \texttt{gtw.corp.example.com} \\
+ \texttt{203.0.113.42} & WAN & \texttt{vpn.example.com} \\
+\end{tabularx}
+
+\subsubsection{Accounts}
+
+Available accounts are:
+
+\begin{tabularx}{\textwidth}{l|cc}
+ Username & Password & Usage \\
+ \hline\endhead
+ admin & \importpassword{gtw_admin_password} & Administrative access \\
+\end{tabularx}
+
+\subsubsection{Services}
+
+Provided services are:
+
+\begin{itemize}
+  \item Firewall
+  \item NAT
+  \item IKEv2 VPN Server
+\end{itemize}
+
+\subsubsection{Backups}
+
+Backups are manual and should be stored on the IT file sharing, backup subfolder.
+
+\subsection{Distribution}
+
+Switch cluster in charge of distribution role.
+
+\subsubsection{System info}
+\begin{tabularx}{\textwidth}{l|l}
+ Type & Cisco SG500X 48 \\
+ OS & 1.4.7.06 \\
+ Location & Server Closet A42 \\
+\end{tabularx}
+
+\subsubsection{Network info}
+
+System has the following IP addresses:
+
+\begin{tabularx}{\textwidth}{l|ll}
+ IP Address & Usage & FQDN \\
+ \hline\endhead
+ \texttt{192.168.0.2} & LAN & \texttt{distri.corp.example.com} \\
+ \texttt{192.168.*.1} & Subnet routing interface & \\
+\end{tabularx}
+
+\subsubsection{Accounts}
+
+Available accounts are:
+
+\begin{tabularx}{\textwidth}{l|cc}
+ Username & Password & Usage \\
+ \hline\endhead
+ cisco & \importpassword{distri_admin_password} & Administrative access \\
+\end{tabularx}
+
+\subsubsection{Services}
+
+Provided services are:
+
+\begin{itemize}
+  \item Inter VLAN routing
+  \item Inter VLAN filtering
+  \item DHCP relay
+\end{itemize}
+
+\subsubsection{Backups}
+
+Backups are manual and should be stored on the IT file sharing, backup subfolder.
+
+\subsection{Access}
+
+All access switches share the same configuration. The documentation for each of them is unified in one section. Location of each access switch is available in the Network info section.
+
+\subsubsection{System info}
+\begin{tabularx}{\textwidth}{l|l}
+ Type & Cisco SG300 \\
+ OS & 1.4.7.06 \\
+\end{tabularx}
+
+\subsubsection{Network info}
+
+System has the following IP addresses:
+
+\begin{tabularx}{\textwidth}{l|ll}
+ IP Address & Location & FQDN \\
+ \hline\endhead
+ \texttt{192.168.42.2} & Server Closet A42 & \texttt{asw-1.corp.example.com} \\
+ \texttt{192.168.42.3} & Main Conference Room & \texttt{asw-2.corp.example.com} \\
+ \texttt{192.168.42.4} & Warehouse & \texttt{asw-3.corp.example.com} \\
+\end{tabularx}
+
+\subsubsection{Accounts}
+
+Available accounts are:
+
+\begin{tabularx}{\textwidth}{l|cc}
+ Username & Password & Usage \\
+ \hline\endhead
+ cisco & \importpassword{access_admin_password} & Administrative access \\
+\end{tabularx}
+
+\subsubsection{Services}
+
+Provided services are:
+
+\begin{itemize}
+  \item Endpoint network access with 802.1x
+  \item VLAN tagging
+  \item PoE for IP Phone and Wireless access points
+\end{itemize}
+
+\subsubsection{Backups}
+
+Backups are manual and should be stored on the IT file sharing, backup subfolder.
+
+\subsection{WiFi}
+
+All WiFi access point share the same management configuration. The documentation for each of them is unified in one section. Location of each access point is available in the Network info section.
+
+\subsubsection{System info}
+\begin{tabularx}{\textwidth}{l|l}
+ Type & Cisco Aironet 1850i \\
+ OS & 15.3.3-JD \\
+\end{tabularx}
+
+\subsubsection{Network info}
+
+System has the following IP addresses:
+
+\begin{tabularx}{\textwidth}{l|ll}
+ IP Address & Location & FQDN \\
+ \hline\endhead
+ \texttt{192.168.43.2} & Open Space & \texttt{ap-1.corp.example.com} \\
+ \texttt{192.168.43.3} & Main Conference Room & \texttt{ap-2.corp.example.com} \\
+ \texttt{192.168.43.4} & Warehouse & \texttt{ap-3.corp.example.com} \\
+\end{tabularx}
+
+\subsubsection{Accounts}
+
+Available accounts are:
+
+\begin{tabularx}{\textwidth}{l|cc}
+ Username & Password & Usage \\
+ \hline\endhead
+ cisco & \importpassword{ap_admin_password} & Administrative access \\
+\end{tabularx}
+
+\subsubsection{Services}
+
+Provided services are:
+
+\begin{itemize}
+  \item Endpoint wireless network access with 802.1x
+  \item Guest access on guest VLAN
+\end{itemize}
+
+\subsubsection{Backups}
+
+Backups are manual and should be stored on the IT file sharing, backup subfolder.
+
+\section{Virtualization Farm}
+
+\subsection{Central Management}
+
+Central management for virtual environment is provided by VMware VCenter and accessible via the VMware vSphere Web Client.
+
+\subsubsection{System info}
+\begin{tabularx}{\textwidth}{l|l}
+ Type & VMware vCenter \\
+ OS & 6.5 \\
+ Location & Virtual Cluster A \\
+\end{tabularx}
+
+\subsubsection{Network info}
+
+System has the following IP addresses:
+
+\begin{tabularx}{\textwidth}{l|ll}
+ IP Address & Usage & FQDN \\
+ \hline\endhead
+ \texttt{192.168.41.2} & LAN & \texttt{vsphere.corp.example.com} \\
+\end{tabularx}
+
+\subsubsection{Accounts}
+
+Available accounts are:
+
+\begin{tabularx}{\textwidth}{l|cc}
+ Username & Password & Usage \\
+ \hline\endhead
+ administrator@vsphere.example.com & \importpassword{vsphere_admin_password} & Administrative access \\
+\end{tabularx}
+
+\subsubsection{Services}
+
+Provided services are:
+
+\begin{itemize}
+  \item ESXi management
+  \item vSphere Orchestrator
+\end{itemize}
+
+\subsubsection{Backups}
+
+Backups are manual and should be stored on the IT file sharing, backup subfolder.
+
+\subsection{Hypervisors}
+
+All hypervisors share the same configuration. The documentation for each of them is unified in one section. Location of each access switch is available in the Network info section.
+
+\subsubsection{System info}
+\begin{tabularx}{\textwidth}{l|l}
+ Type & MacPro \\
+ OS & ESXi 6.5 \\
+\end{tabularx}
+
+\subsubsection{Network info}
+
+System has the following IP addresses:
+
+\begin{tabularx}{\textwidth}{l|ll}
+ IP Address & Name \& location & FQDN \\
+ \hline\endhead
+ \texttt{10.0.40.2} & ESXi-1, Server Closet A42 & \texttt{esxi-1.corp.example.com} \\
+ \texttt{10.0.40.3} & ESXi-1, Server Closet A42 & \texttt{esxi-2.corp.example.com} \\
+ \texttt{10.0.40.4} & ESXi-1, Server Closet B12 & \texttt{esxi-3.corp.example.com} \\
+ \texttt{10.0.40.5} & ESXi-1, Server Closet B12 & \texttt{esxi-4.corp.example.com} \\
+\end{tabularx}
+
+\subsubsection{Accounts}
+
+Available accounts are:
+
+\begin{tabularx}{\textwidth}{l|cc}
+ Username & Password & Usage \\
+ \hline\endhead
+ root & \importpassword{esxi_root_password} & ESXi system management \\
+\end{tabularx}
+
+\subsubsection{Services}
+
+Provided services are:
+
+\begin{itemize}
+  \item virtualization~;
+  \item hypervisor management.
+\end{itemize}
+
+\subsubsection{Backups}
+
+Backups are manual and should be stored on the IT file sharing, backup subfolder.
+
+\subsection{Storage}
+
+Virtual storage is hosted by a Promise VTrak SAN system.
+
+\subsubsection{System info}
+\begin{tabularx}{\textwidth}{l|l}
+ Type & Promise VTrak \\
+ OS & unknown \\
+ Location & Server Closet A42 \\
+\end{tabularx}
+
+\subsubsection{Network info}
+
+System has the following IP addresses:
+
+\begin{tabularx}{\textwidth}{l|ll}
+ IP Address & Usage & FQDN \\
+ \hline\endhead
+ \texttt{192.168.42.5} & System management & \texttt{san1.corp.example.com} \\
+\end{tabularx}
+
+\subsubsection{Accounts}
+
+Available accounts are:
+
+\begin{tabularx}{\textwidth}{l|cc}
+ Username & Password & Usage \\
+ \hline\endhead
+ Administrator & \importpassword{san_admin_password} & System management \\
+\end{tabularx}
+
+\subsubsection{Services}
+
+Provided services are:
+
+\begin{itemize}
+  \item Fibre Channel storage~;
+  \item Storage management.
+\end{itemize}
+
+\subsubsection{Backups}
+
+RAID configuration is stored on the IT file sharing, backup subfolder. Data themselves are backuped by the virtual layer.
+
+\subsection{Storage Network}
+
+All Fibre Channel switches share the same setup. The documentation for each of them is unified in one section. Location of each switch is available in the Network info section.
+
+\subsubsection{System info}
+\begin{tabularx}{\textwidth}{l|l}
+ Type & QLogic 5802V \\
+ OS & unknown \\
+\end{tabularx}
+
+\subsubsection{Network info}
+
+System has the following IP addresses:
+
+\begin{tabularx}{\textwidth}{l|ll}
+ IP Address & Location & FQDN \\
+ \hline\endhead
+ \texttt{192.168.42.6} & Server Closet A42 & \texttt{fcsw-1.corp.example.com} \\
+\end{tabularx}
+
+\subsubsection{Accounts}
+
+Available accounts are:
+
+\begin{tabularx}{\textwidth}{l|cc}
+ Username & Password & Usage \\
+ \hline\endhead
+ admin & \importpassword{sanbox_admin_password} & Management \\
+\end{tabularx}
+
+\subsubsection{Services}
+
+Provided services are:
+
+\begin{itemize}
+  \item Fibre Channel Fabric.
+\end{itemize}
+
+\subsubsection{Backups}
+
+Backups are manual and should be stored on the IT file sharing, backup subfolder.
+
+\section{Servers}
+
+\subsection{Domain Controllers}
+
+All domains controller use the same setup and provide the same services
+
+\subsubsection{System info}
+\begin{tabularx}{\textwidth}{l|l}
+ Type & VM \\
+ OS & Windows 2012 R2 \\
+ Location & Virtualization farm \\
+\end{tabularx}
+
+\subsubsection{Network info}
+
+System has the following IP addresses:
+
+\begin{tabularx}{\textwidth}{l|ll}
+ IP Address & Usage & FQDN \\
+ \hline\endhead
+ \texttt{192.168.0.2} & DC1 & \texttt{dc1.corp.example.com} \\
+ \texttt{192.168.0.3} & DC2 & \texttt{dc2.corp.example.com} \\
+\end{tabularx}
+\subsubsection{Accounts}
+
+Available accounts are:
+
+\begin{tabularx}{\textwidth}{l|cc}
+ Username & Password & Usage \\
+ \hline\endhead
+ administrator@corp.example.com & \importpassword{dc_admin_password} & AD main admin account \\
+ - & \importpassword{dc_dsrm_password} & DSRM password 
+\end{tabularx}
+
+\subsubsection{Services}
+
+Provided services are:
+
+\begin{itemize}
+  \item Domain Controller~;
+  \item DNS Server~;
+  \item DHCP Server.
+\end{itemize}
+
+\subsubsection{Backups}
+
+Backups are handled at the virutal level.
+
+\subsection{MDM}
+
+MDM service is handled by Profile Manager on macOS Server.
+
+\subsubsection{System info}
+\begin{tabularx}{\textwidth}{l|l}
+ Type & VM \\
+ OS & macOS 10.12.3 / Server 5.2 \\
+ Location & Virtualization farm \\
+\end{tabularx}
+
+\subsubsection{Network info}
+
+System has the following IP addresses:
+
+\begin{tabularx}{\textwidth}{l|ll}
+ IP Address & Usage & FQDN \\
+ \hline\endhead
+ \texttt{192.168.0.12} & LAN & \texttt{mdm.corp.example.com} \\
+\end{tabularx}
+
+\subsubsection{Apple ID}
+
+This server require an Apple ID to handle macOS Server licence. Here are all the info used during the Apple ID creation.
+
+\begin{tabularx}{\textwidth}{l|l}
+ E-mail & appleid.mdmserver@example.com \\
+ Password & \importpassword{mdmserver_appleid_password} \\
+ Firstname & macOS \\
+ Lastname & Server \\
+ Birth date & \importpassword{mdmserver_appleid_birthdate} \\
+ 2FA phone number & 0123456789 \\
+ Security question 1 & Best friends \\
+ Answer 1 & \importpassword{mdmserver_appleid_answer1} \\
+ Security question 2 & Ideal job \\
+ Answer 2 & \importpassword{mdmserver_appleid_answer2} \\
+ Security question 3 & First boss \\
+ Answer 3 & \importpassword{mdmserver_appleid_answer3} \\
+\end{tabularx}
+
+\subsubsection{Accounts}
+
+Available accounts are:
+
+\begin{tabularx}{\textwidth}{l|cc}
+ Username & Password & Usage \\
+ \hline\endhead
+ ladmin & \importpassword{mdmserver_ladmin_password} & System management \\
+\end{tabularx}
+
+\subsubsection{Services}
+
+Provided services are:
+
+\begin{itemize}
+  \item Caching service~;
+  \item MDM.
+\end{itemize}
+
+\subsubsection{Backups}
+
+Backups are handled at the virtual level.
+
+\chapter{Basics Process}
+
+\section{User management}
+
+\subsection{Account creation}
+
+Creating an account require admin rights and a formal ticket filled by N+1 or HR departments on the support portal.
+
+This ticket will provide you the followed info:
+\begin{itemize}
+  \item Firstname
+  \item Lastname
+  \item Requested e-mail address
+  \item Functional groups
+  \item Specific authorization for VPN accessible resources
+\end{itemize}
+
+Regarding e-mail, the demander will be in charge to follow the company template but still have the right to do small change if the final e-mail created create an unwanted result.
+
+To create the account, you will have to connect via RDP to the IT management environment on the IT server with your \texttt{adm-} account and use the \texttt{Users and computers} Active Directory management tool.
+
+Accounts must be created in the organization unit \texttt{Employees}, \texttt{Consultants}, \texttt{Externals} located in \texttt{corp.example.com/Members}.
+
+Specials \texttt{adm-} accounts are located in the \texttt{Privileged} organization unit.
+
+\subsection{Account deactivation}
+
+During the off-boarding process, HR or N+1 will issue a formal deactivation ticket on the support portal. The ticket will tell you which account need to be disabled when. Account deactivation requested are sent before the last day of work to let you organize your work.
+
+Deactivation steps are:
+\begin{itemize}
+  \item Reset the password to a random and undocumented one
+  \item Rename the display name with to add \texttt{Z - } in front
+  \item Move the account in \texttt{corp.example.com/Disabled}
+  \item Remove the user from all groups
+  \item Disable the account
+\end{itemize}
+
+\subsection{Service account}
+
+Creating a service account require admin rights. Account name will be service-\textit{servicename} and must be located in \texttt{corp.example.com/Managed Services Accounts}.
+
+Password must be unable to change and never expire.
+
+Password must be generated with the command line \texttt{openssl rand -base64 42}.
+
+Service password must be documented in the IT password documentation system.
+
+\section{System Deployment}
+
+\subsection{Workstation}
+
+\subsubsection{macOS}
+
+All macOS workstations are registered in the DEP process.
+
+You just have to boot the computer with network available to automatically set everything.
+
+After the first boot, computer will be enrolled to MDM, bound to AD, and updated by Munki.
+
+The computer is ready to be used when it displays the login window with login/password fields instead of list of users and the name of the company just behind.
+
+\subsubsection{Windows}
+
+Windows workstations aren't allowed for now.
+
+\subsubsection{Linux}
+
+Linux workstations aren't allowed for now.
+
+\subsection{Servers}
+
+\subsubsection{macOS}
+
+All macOS servers are  deployed as VM on the virtualized environment. You need to create a new macOS VM with NetBoot enabled for the next boot only.
+
+The NetBoot will lead you to the \texttt{Imagr} deployment shell. You will just have to select the requested server version.
+
+In the end, your new server will be set with default password \importpassword{deployment_macos_server_default_ladmin_password} for the \texttt{ladmin} account and linked to the server-gen Munki's manifest.
+
+Active Directory bind isn't made by default. You will have to do it with your \texttt{adm-} account if needed.
+
+\subsubsection{Windows}
+
+Windows servers are created from virtual template. After deployment the Administrator account has password \importpassword{deployment_windows_server_default_admin_password} and nothing else is done.
+
+Active Directory bind isn't made by default. You will have to do it with your \texttt{adm-} account if needed.
+
+\subsubsection{Linux}
+
+Linux servers are created from virtual template. After deployment the root account has password \importpassword{deployment_linux_server_default_root_password} and nothing else is done.
+
+Active Directory bind isn't made by default. You will have to it with sssd and your \texttt{adm-} account if needed.
+
+\subsection{Service Devices (Printers, etc.)}
+
+All new network services must use AD authentication with SAML or LDAP bind. Please refer to the service documentation.
+
+\end{document}
