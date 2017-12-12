@@ -20,11 +20,6 @@
 \RequirePackage{float} % Improved figure position
 \RequirePackage[frenchb]{babel} % Use french version of automatic content (like the date)
 
-
-%\RequirePackage[british,french]{translation}
-%\translationAlias{english}{british}
-%\translation{french}
-
 %%% Options
 
 %% Password management
